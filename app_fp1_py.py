@@ -19,14 +19,12 @@ if st.button("Predict"):
 
 
             df = pd.DataFrame({
-                "Date": [
-                    datetime.strptime(d, "%Y-%m").strftime("%b %Y")
-                    for d in result["dates"]
-                ],
+                "Date": result["dates"],
                 "Forecast": result["forecast"],
                 "Lower CI": result["lower"],
                 "Upper CI": result["upper"]
             })
+            df["Date"] = pd.to_datetime(df["Date"]).dt.date
 
             st.success("Forecast fetched!")
             st.dataframe(df)
