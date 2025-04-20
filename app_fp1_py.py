@@ -39,6 +39,6 @@ if st.button("Predict"):
 
         except Exception as e:
             response = requests.get(FASTAPI_URL, params={"sector": sector, "months": months})
-            result = response.json()
-            st.write("API Response:", result)
+            # result = response.json()
+            st.write("API Response:", response)
             st.error(f"Something went wrong: {e}")
