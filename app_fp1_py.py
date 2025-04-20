@@ -11,8 +11,7 @@ import streamlit as st
 import pandas as pd
 import requests
 
-# Replace this with your live ngrok URL (copy from Colab after running ngrok)
-FASTAPI_URL = "https://9dfa-34-41-88-204.ngrok-free.app"
+FASTAPI_URL = "https://9fc5-34-41-88-204.ngrok-free.app"  # Replace
 
 st.title("⚡ Energy Consumption Forecast")
 
@@ -20,23 +19,21 @@ sector = st.selectbox("Select Sector", ["Commercial", "Industrial"])
 months = st.selectbox("Forecast Period (months)", [3, 6, 9, 12])
 
 if st.button("Predict"):
-    with st.spinner("Calling forecasting model..."):
+    with st.spinner("Fetching forecast..."):
         try:
             response = requests.get(FASTAPI_URL, params={"sector": sector, "months": months})
             result = response.json()
 
             df = pd.DataFrame({
-                result
-            # "Month +N": result["dates"],
-            # "Forecast": result["forecast"],
-            # "Lower CI": result["lower"],
-            # "Upper CI": result["upper"],
+                "Date": result["dates"],
+                "Forecast": result["forecast"],
+                "Lower CI": result["lower"],
+                "Upper CI": result["upper"],
             })
-            # st.print(result)
 
-            st.success("Prediction complete!")
+            st.success("Forecast fetched!")
             st.dataframe(df)
-            st.line_chart(df.set_index("Month +N")[["Forecast", "Lower CI", "Upper CI"]])
+            st.line_chart(df.set_index("Date")[["Forecast", "Lower CI", "Upper CI"]])
 
         except Exception as e:
             st.error(f"Something went wrong: {e}")
