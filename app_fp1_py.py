@@ -13,7 +13,7 @@ import pandas as pd
 import requests
 
 # Replace this with your live ngrok URL (copy from Colab after running ngrok)
-FASTAPI_URL = "https://<your-ngrok-url>.ngrok-free.app/predict"
+FASTAPI_URL = "https://3e05-34-136-243-126.ngrok-free.app"
 
 st.title("⚡ Energy Consumption Forecast")
 
