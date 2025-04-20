@@ -8,7 +8,7 @@ FASTAPI_URL = "https://8f02-34-41-88-204.ngrok-free.app/predict"  # Replace
 st.title("⚡Electricity Generation Forecast")
 
 sector = st.selectbox("Select Sector", ["Commercial", "Industrial"])
-months = st.selectbox("Forecast Period (months)", [3, 6, 9, 12])
+months = st.selectbox("Forecast Period (months)", [3, 6])
 
 if st.button("Predict"):
     with st.spinner("Fetching forecast..."):
