@@ -5,7 +5,7 @@ from datetime import datetime
 
 FASTAPI_URL = "https://8f02-34-41-88-204.ngrok-free.app/predict"  # Replace
 
-st.title("⚡Energy Consumption Forecast")
+st.title("⚡Electricity Consumption Forecast")
 
 sector = st.selectbox("Select Sector", ["Commercial", "Industrial"])
 months = st.selectbox("Forecast Period (months)", [3, 6, 9, 12])
