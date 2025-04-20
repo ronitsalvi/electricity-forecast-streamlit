@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 
-FASTAPI_URL = "https://a387-34-41-88-204.ngrok-free.app/predict"  # Replace
+FASTAPI_URL = "https://11e0-34-41-88-204.ngrok-free.app/predict"  # Replace
 
 st.title("Energy Consumption Forecast")
 
@@ -19,9 +19,9 @@ if st.button("Predict"):
 
             df = pd.DataFrame({
                 # "Date": result["dates"],
-                "Forecast": result["forecast"],
-                "Lower CI": result["lower"],
-                "Upper CI": result["upper"],
+                "Forecast": result["forecast"]
+                # "Lower CI": result["lower"],
+                # "Upper CI": result["upper"],
             })
 
             st.success("Forecast fetched!")
