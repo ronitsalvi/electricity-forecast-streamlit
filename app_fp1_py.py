@@ -28,7 +28,7 @@ if st.button("Predict"):
 
             st.success("Forecast fetched!")
             st.dataframe(df)
-            # Plot
+            st.success("Forecast of electricity generation from current month in million kilowatthour")
             st.line_chart(df.set_index("Date")[["Forecast", "Lower CI", "Upper CI"]])
 
         except Exception as e:
