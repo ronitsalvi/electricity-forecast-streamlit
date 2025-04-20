@@ -11,7 +11,7 @@ import streamlit as st
 import pandas as pd
 import requests
 
-FASTAPI_URL = "https://9fc5-34-41-88-204.ngrok-free.app"  # Replace
+FASTAPI_URL = "https://a507-34-41-88-204.ngrok-free.app"  # Replace
 
 st.title("⚡ Energy Consumption Forecast")
 
@@ -23,6 +23,8 @@ if st.button("Predict"):
         try:
             response = requests.get(FASTAPI_URL, params={"sector": sector, "months": months})
             result = response.json()
+            st.write("API Response:", result)
+
 
             df = pd.DataFrame({
                 "Date": result["dates"],
