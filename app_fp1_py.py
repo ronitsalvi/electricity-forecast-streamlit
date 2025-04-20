@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 
-FASTAPI_URL = "https://11e0-34-41-88-204.ngrok-free.app/predict"  # Replace
+FASTAPI_URL = "https://1397-34-41-88-204.ngrok-free.app/predict"  # Replace
 
 st.title("Energy Consumption Forecast")
 
