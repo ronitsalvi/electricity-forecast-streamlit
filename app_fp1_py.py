@@ -8,31 +8,34 @@ Original file is located at
 """
 
 !pip install streamlit
-
 import streamlit as st
-import requests
 import pandas as pd
+import requests
 
-# Replace with your ngrok URL
-FASTAPI_URL = "https://5f7e-35-222-192-220.ngrok-free.app"
+# Replace this with your live ngrok URL (copy from Colab after running ngrok)
+FASTAPI_URL = "https://<your-ngrok-url>.ngrok-free.app/predict"
 
-st.title("🔮 Electricity Forecast")
+st.title("⚡ Energy Consumption Forecast")
+
+sector = st.selectbox("Select Sector", ["Commercial", "Industrial"])
+months = st.selectbox("Forecast Period (months)", [3, 6, 9, 12])
 
 if st.button("Predict"):
-    try:
-        response = requests.get(FASTAPI_URL)
-        result = response.json()
+    with st.spinner("Calling forecasting model..."):
+        try:
+            response = requests.get(FASTAPI_URL, params={"sector": sector, "months": months})
+            result = response.json()
 
-        df = pd.DataFrame({
-            "Month +N": [f"Month +{i+1}" for i in range(len(result['forecast']))],
-            "Forecast": result['forecast'],
-            "Lower": [x[0] for x in result['confidence_interval']],
-            "Upper": [x[1] for x in result['confidence_interval']]
-        })
+            df = pd.DataFrame({
+                "Month +N": [f"Month +{i+1}" for i in range(len(result["forecast"]))],
+                "Forecast": result["forecast"],
+                "Lower CI": [x[0] for x in result["confidence_interval"]],
+                "Upper CI": [x[1] for x in result["confidence_interval"]],
+            })
 
-        st.success("Forecast received:")
-        st.dataframe(df)
-        st.line_chart(df.set_index("Month +N")[["Forecast", "Lower", "Upper"]])
+            st.success("Prediction complete!")
+            st.dataframe(df)
+            st.line_chart(df.set_index("Month +N")[["Forecast", "Lower CI", "Upper CI"]])
 
-    except Exception as e:
-        st.error(f"Something went wrong: {e}")
+        except Exception as e:
+            st.error(f"Something went wrong: {e}")
