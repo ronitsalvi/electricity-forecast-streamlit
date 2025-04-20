@@ -25,12 +25,13 @@ if st.button("Predict"):
             response = requests.get(FASTAPI_URL, params={"sector": sector, "months": months})
             result = response.json()
 
-            df = pd.DataFrame({
-            "Month +N": result["dates"],
-            "Forecast": result["forecast"],
-            "Lower CI": result["lower"],
-            "Upper CI": result["upper"],
-            })
+            # df = pd.DataFrame({
+            # "Month +N": result["dates"],
+            # "Forecast": result["forecast"],
+            # "Lower CI": result["lower"],
+            # "Upper CI": result["upper"],
+            # })
+            st.print(result)
 
             st.success("Prediction complete!")
             st.dataframe(df)
