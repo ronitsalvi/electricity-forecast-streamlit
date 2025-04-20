@@ -38,5 +38,7 @@ if st.button("Predict"):
             st.line_chart(df.set_index("Date")[["Forecast", "Lower CI", "Upper CI"]])
 
         except Exception as e:
+            response = requests.get(FASTAPI_URL, params={"sector": sector, "months": months})
+            result = response.json()
             st.write("API Response:", result)
             st.error(f"Something went wrong: {e}")
