@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+from datetime import datetime
 
 FASTAPI_URL = "https://8f02-34-41-88-204.ngrok-free.app/predict"  # Replace
 
@@ -18,7 +19,10 @@ if st.button("Predict"):
 
 
             df = pd.DataFrame({
-                "Date": result["dates"],
+                "Date": [
+                    datetime.strptime(d, "%Y-%m").strftime("%b %Y")
+                    for d in result["dates"]
+                ],
                 "Forecast": result["forecast"],
                 "Lower CI": result["lower"],
                 "Upper CI": result["upper"]
