@@ -10,7 +10,7 @@ st.title("⚡Electricity Generation Forecast")
 sector = st.selectbox("Select Sector", ["Commercial", "Industrial"])
 months = st.selectbox("Forecast Period (months)", [3, 6])
 
-if st.button("Predict"):
+if st.button("Forecast"):
     with st.spinner("Fetching forecast..."):
         try:
             response = requests.get(FASTAPI_URL, params={"sector": sector, "months": months})
