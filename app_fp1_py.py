@@ -11,9 +11,9 @@ import streamlit as st
 import pandas as pd
 import requests
 
-FASTAPI_URL = "https://0624-34-41-88-204.ngrok-free.app/predict"  # Replace
+FASTAPI_URL = "https://60ac-34-41-88-204.ngrok-free.app/predict"  # Replace
 
-st.title("⚡ Energy Consumption Forecast")
+st.title("Energy Consumption Forecast")
 
 sector = st.selectbox("Select Sector", ["Commercial", "Industrial"])
 months = st.selectbox("Forecast Period (months)", [3, 6, 9, 12])
