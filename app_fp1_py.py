@@ -38,4 +38,5 @@ if st.button("Predict"):
             st.line_chart(df.set_index("Date")[["Forecast", "Lower CI", "Upper CI"]])
 
         except Exception as e:
+            st.write("API Response:", result)
             st.error(f"Something went wrong: {e}")
