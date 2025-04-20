@@ -14,7 +14,7 @@ if st.button("Predict"):
         try:
             response = requests.get(FASTAPI_URL, params={"sector": sector, "months": months})
             result = response.json()
-            st.write("API Response:", result)
+            # st.write("API Response:", result)
 
 
             df = pd.DataFrame({
