@@ -26,10 +26,10 @@ if st.button("Predict"):
             result = response.json()
 
             df = pd.DataFrame({
-                "Month +N": [f"Month +{i+1}" for i in range(len(result["forecast"]))],
-                "Forecast": result["forecast"],
-                "Lower CI": [x[0] for x in result["confidence_interval"]],
-                "Upper CI": [x[1] for x in result["confidence_interval"]],
+            "Month +N": result["dates"],
+            "Forecast": result["forecast"],
+            "Lower CI": result["lower"],
+            "Upper CI": result["upper"],
             })
 
             st.success("Prediction complete!")
