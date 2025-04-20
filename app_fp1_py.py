@@ -20,8 +20,8 @@ if st.button("Predict"):
             df = pd.DataFrame({
                 "Date": result["dates"],
                 "Forecast": result["forecast"],
-                "Lower_CI": result["lower"],
-                "Upper_CI": result["upper"]
+                "Lower CI": result["lower"],
+                "Upper CI": result["upper"]
             })
 
             st.success("Forecast fetched!")
